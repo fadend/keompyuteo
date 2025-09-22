@@ -20,6 +20,11 @@ function randomSyllable() {
 
 class ListeningGame {
   constructor(gameElem) {
+    this.numCorrect = 0;
+    this.total = 0;
+    this.alreadyGuessed = false;
+    this.numCorrectDisplay = gameElem.querySelector(".num-correct");
+    this.numTotalDisplay = gameElem.querySelector(".num-total");
     this.newListenButton = gameElem.querySelector("#new-listen-button");
     this.newListenButton.addEventListener("click", () => {
       this.newListeningRound();
@@ -29,11 +34,14 @@ class ListeningGame {
     this.playButton.addEventListener("click", () =>
       this.speakCorrectSyllable(),
     );
-    this.guessLabels = document.querySelectorAll(".listen-guess-label");
+    this.guessLabels = [...document.querySelectorAll(".listen-guess-label")];
     for (let label of this.guessLabels) {
       label.querySelector("input").addEventListener("click", () => {
         this.speakLabel(label);
       });
+      label
+        .querySelector("input")
+        .addEventListener("change", () => this.updateScore());
     }
     this.voiceSelect = gameElem.querySelector("#voices");
     this.updateVoices();
@@ -76,6 +84,9 @@ class ListeningGame {
   }
 
   newListeningRound() {
+    this.alreadyGuessed = false;
+    this.total++;
+    this.numTotalDisplay.textContent = this.total;
     const syllablesSet = new Set();
     while (syllablesSet.size < this.guessLabels.length) {
       syllablesSet.add(randomSyllable());
@@ -93,6 +104,20 @@ class ListeningGame {
       label.querySelector(".guess").textContent = syllable;
       label.querySelector("input").checked = false;
     });
+  }
+
+  updateScore() {
+    const selected = this.guessLabels.filter(
+      (e) => e.querySelector("input").checked,
+    );
+    if (this.alreadyGuessed || selected.length === 0) {
+      return;
+    }
+    this.alreadyGuessed = true;
+    if (selected[0].classList.contains("correct")) {
+      this.numCorrect++;
+      this.numCorrectDisplay.textContent = this.numCorrect;
+    }
   }
 
   speakLabel(label) {

@@ -18,6 +18,11 @@ label:has(:checked) {
 label.correct:has(:checked) {
   background-color: lightgreen;
 }
+.score-box {
+  font-size: 15pt;
+  height: 1.8rem;
+  vertical-align: middle;
+}
 .speech-speed-label {
   font-size: 15pt;
   height: 1.8rem;
