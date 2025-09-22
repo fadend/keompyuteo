@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Learn Korean with the 컴퓨터</title>
+    <link rel="stylesheet" href="keompyuteo.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <div id="listening-game">
+      <h2>Listen</h2>
+      <button id="play-button" class="game-button">🗣 Play</button>
+      <select id="voices"></select>
+      <label class="speech-speed-label"
+        >Speed:
+        <input type="range" id="speech-speed" min="1" max="100" value="50"
+      /></label>
+      <p class="question">What did you hear?</p>
+      <ol id="listen-options-list">
+        <li>
+          <label class="listen-guess-label"
+            ><input type="radio" name="listen-guess" /><span
+              class="guess"
+            ></span
+          ></label>
+        </li>
+        <li>
+          <label class="listen-guess-label"
+            ><input type="radio" name="listen-guess" /><span
+              class="guess"
+            ></span
+          ></label>
+        </li>
+        <li>
+          <label class="listen-guess-label"
+            ><input type="radio" name="listen-guess" /><span
+              class="guess"
+            ></span
+          ></label>
+        </li>
+        <li>
+          <label class="listen-guess-label"
+            ><input type="radio" name="listen-guess" /><span
+              class="guess"
+            ></span
+          ></label>
+        </li>
+      </ol>
+      <button id="new-listen-button" class="game-button">↻ Next</button>
+    </div>
+    <script src="keompyuteo.js"></script>
+  </body>
+</html>

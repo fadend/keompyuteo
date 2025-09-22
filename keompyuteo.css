@@ -1,0 +1,37 @@
+.game-button {
+  font-size: 15pt;
+  height: 1.8rem;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.question {
+  font-size: 15pt;
+}
+.listen-guess-label {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 25pt;
+  font-weight: normal;
+}
+label:has(:checked) {
+  background-color: pink;
+}
+label.correct:has(:checked) {
+  background-color: lightgreen;
+}
+.speech-speed-label {
+  font-size: 15pt;
+  height: 1.8rem;
+  vertical-align: middle;
+}
+#speech-speed {
+  font-size: 15pt;
+  height: 1.8rem;
+  display: inline-block;
+  vertical-align: middle;
+  width: 200px;
+}
+#voices {
+  font-size: 15pt;
+  height: 1.8rem;
+  vertical-align: middle;
+}
