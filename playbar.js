@@ -19,7 +19,7 @@ class PlayBar {
     speedLabel.textContent = "Speed: ";
     speedLabel.classList.add("speech-speed-label");
     this.rateInput = document.createElement("input");
-    this.rateInput.classList.add("speed-speed");
+    this.rateInput.classList.add("speech-speed");
     this.rateInput.type = "range";
     this.rateInput.min = 1;
     this.rateInput.max = 100;

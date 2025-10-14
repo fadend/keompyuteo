@@ -16,6 +16,14 @@
   font-family: "Noto Sans KR", sans-serif;
   font-size: 25pt;
   font-weight: normal;
+  border: 1px solid transparent;
+  vertical-align: middle;
+}
+.listen-guess-label input {
+  display: none;
+}
+.listen-guess-label:hover {
+  border: 1px solid black;
 }
 label:has(:checked) {
   background-color: pink;
