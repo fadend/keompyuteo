@@ -3,9 +3,6 @@ const INITIAL_CONSONANTS = "ᄀᄁᄂᄃᄄᄅᄆᄇᄈᄉᄊᄋᄌᄍᄎᄏᄐ�
 const VOWELS = "ᅡᅢᅣᅤᅥᅦᅧᅨᅩᅪᅫᅬᅭᅮᅯᅰᅱᅲᅳᅴᅵ";
 const FINAL_CONSONANTS = " ᆨᆩᆪᆫᆬᆭᆮᆯᆰᆱᆲᆳᆴᆵᆶᆷᆸᆹᆺᆻᆼᆽᆾᆿᇀᇁᇂ";
 
-const MIN_RATE = 0.2;
-const MAX_RATE = 1.4;
-
 function randomNonnegativeInt(max) {
   return parseInt(max * Math.random());
 }
@@ -26,14 +23,11 @@ class ListeningGame {
     this.numCorrectDisplay = gameElem.querySelector(".num-correct");
     this.numTotalDisplay = gameElem.querySelector(".num-total");
     this.newListenButton = gameElem.querySelector("#new-listen-button");
+    this.playBar = new PlayBar(gameElem.querySelector("#play-bar"));
     this.newListenButton.addEventListener("click", () => {
       this.newListeningRound();
-      this.speakCorrectSyllable();
+      this.playBar.speak();
     });
-    this.playButton = gameElem.querySelector("#play-button");
-    this.playButton.addEventListener("click", () =>
-      this.speakCorrectSyllable(),
-    );
     this.guessLabels = [...document.querySelectorAll(".listen-guess-label")];
     for (let label of this.guessLabels) {
       label.querySelector("input").addEventListener("click", () => {
@@ -43,44 +37,9 @@ class ListeningGame {
         .querySelector("input")
         .addEventListener("change", () => this.updateScore());
     }
-    this.voiceSelect = gameElem.querySelector("#voices");
-    this.updateVoices();
-    // Chrome may fetch the voices asynchronously. Also listen for a
-    // change in the available voices, potentially triggered by our
-    // first attempt to populate the list of voices.
-    window.speechSynthesis.addEventListener("voiceschanged", () => {
-      this.updateVoices();
-    });
-    this.rateInput = gameElem.querySelector("#speech-speed");
-    this.rateInput.addEventListener("change", () => {
-      this.rateInput.title = `Speed: ${this.getRate()}x`;
-    });
+
     this.correctSyllable = "";
     this.newListeningRound();
-  }
-
-  updateVoices() {
-    this.voices = [];
-    this.voiceSelect.innerHTML = "";
-    for (let voice of window.speechSynthesis.getVoices()) {
-      if (/^ko-/.test(voice.lang)) {
-        const option = document.createElement("option");
-        // Select the first matching voice found.
-        if (this.voices.length === 0) {
-          option.selected = true;
-        }
-        this.voices.push(voice);
-        option.textContent = voice.name;
-        this.voiceSelect.appendChild(option);
-      }
-    }
-  }
-
-  getRate() {
-    return (
-      ((parseInt(this.rateInput.value) - 1) / 100) * (MAX_RATE - MIN_RATE) +
-      MIN_RATE
-    );
   }
 
   newListeningRound() {
@@ -95,6 +54,7 @@ class ListeningGame {
     syllables.sort();
     const correctIndex = randomNonnegativeInt(this.guessLabels.length);
     this.correctSyllable = syllables[correctIndex];
+    this.playBar.setDefaultPhrase(this.correctSyllable);
     this.guessLabels.forEach((label, index) => {
       label.classList.remove("correct");
       if (correctIndex === index) {
@@ -126,21 +86,7 @@ class ListeningGame {
       console.log("Missing syllable for label");
       return;
     }
-    this.speak(syllable);
-  }
-
-  speakCorrectSyllable() {
-    this.speak(this.correctSyllable);
-  }
-
-  speak(text) {
-    if (this.voices.length === 0) {
-      alert("Sorry! Your system doesn't support Korean text-to-speech");
-    }
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = this.voices[this.voiceSelect.selectedIndex];
-    utterance.rate = this.getRate();
-    window.speechSynthesis.speak(utterance);
+    this.playBar.speak(syllable);
   }
 }
 

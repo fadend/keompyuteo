@@ -1,0 +1,48 @@
+#compatibility-warning {
+  display: none;
+  font-weight: bold;
+  color: orange;
+}
+.feedback {
+  margin-top: 10px;
+}
+#heard {
+  font-family: "Noto Sans KR", sans-serif;
+  font-size: 25pt;
+  font-weight: normal;
+}
+#listening {
+  display: none;
+  font-size: 50pt;
+  height: 2em;
+  animation: 0.6s ease-in 0s infinite alternate listening-bounce;
+  float: left;
+}
+@keyframes listening-bounce {
+  from {
+    transform: translateY(0) rotate(0);
+  }
+  to {
+    transform: translateY(-3px) rotate(-3deg);
+  }
+}
+#listening-section {
+  display: none;
+}
+.speak-label {
+  border: 1px black solid;
+  background-color: #eee;
+  font-size: 15pt;
+  height: 1.8rem;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.speak-label:hover {
+  background-color: #ddd;
+}
+.speak-label:has(:checked) {
+  background-color: #d0d0d0;
+}
+#speak-checkbox {
+  display: none;
+}

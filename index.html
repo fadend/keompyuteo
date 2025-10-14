@@ -9,14 +9,13 @@
     </style>
   </head>
   <body>
+    <nav>
+      <a href="index.html">Listen</a>
+      <a href="custom_phrase.html">Speak (custom phrase)</a>
+    </nav>
     <div id="listening-game">
       <h2>Listen</h2>
-      <button id="play-button" class="game-button">🗣 Play</button>
-      <select id="voices"></select>
-      <label class="speech-speed-label"
-        >Speed:
-        <input type="range" id="speech-speed" min="1" max="100" value="50"
-      /></label>
+      <div id="play-bar"></div>
       <p class="question">What did you hear?</p>
       <ol id="listen-options-list">
         <li>
@@ -48,12 +47,13 @@
           ></label>
         </li>
       </ol>
-      <button id="new-listen-button" class="game-button">↻ Next</button>
+      <button id="new-listen-button" class="game-button">Next</button>
       <span class="score-box"
         >Score: <span class="num-correct">0</span> /
         <span class="num-total"></span
       ></span>
     </div>
+    <script src="playbar.js"></script>
     <script src="keompyuteo.js"></script>
   </body>
 </html>

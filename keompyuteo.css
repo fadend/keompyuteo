@@ -1,7 +1,12 @@
 .game-button {
+  font-family: Arial;
   font-size: 15pt;
   height: 1.8rem;
   margin-right: 5px;
+  padding-block-end: 1px;
+  padding-block-start: 1px;
+  padding-inline-end: 6px;
+  padding-inline-start: 6px;
   vertical-align: middle;
 }
 .question {
@@ -28,14 +33,14 @@ label.correct:has(:checked) {
   height: 1.8rem;
   vertical-align: middle;
 }
-#speech-speed {
+.speech-speed {
   font-size: 15pt;
   height: 1.8rem;
   display: inline-block;
   vertical-align: middle;
   width: 200px;
 }
-#voices {
+.voices {
   font-size: 15pt;
   height: 1.8rem;
   vertical-align: middle;

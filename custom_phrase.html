@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Enter your own custom phrase</title>
+    <link rel="stylesheet" href="keompyuteo.css" />
+    <link rel="stylesheet" href="custom_phrase.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">Listen</a>
+      <a href="custom_phrase.html">Speak (custom phrase)</a>
+    </nav>
+    <div id="compatibility-warning">
+      ⚠ Unfortunately, your browser doesn't seem to support the
+      <a
+        href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechRecognition"
+        >SpeechRecogntion API</a
+      >, which is required for this game.
+      <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1940906"
+        >Mozilla is working on it for Firefox.</a
+      >
+    </div>
+    <div id="speak-your-phrase">
+      <h2>Speak your own phrase</h2>
+      <div class="question">
+        Enter some Korean text:
+        <br />
+        <input type="text" size="100" id="target-phrase" value="안녕하세요" />
+        <div id="play-bar"></div>
+      </div>
+      <h2>Can you get the computer to understand you?</h2>
+      <div class="question" id="listening-section">
+        <label class="game-button speak-label"
+          ><input type="checkbox" id="speak-checkbox" />Speak to the
+          computer</label
+        >
+        <button id="start-over-button" class="game-button">Start over</button>
+        <div class="feedback">
+          What the computer heard:
+          <br />
+          <span id="listening">👂</span>
+          <span id="heard"></span>
+        </div>
+      </div>
+    </div>
+    <script src="playbar.js"></script>
+    <script src="custom_phrase.js"></script>
+  </body>
+</html>
