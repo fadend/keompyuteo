@@ -15,8 +15,14 @@ function randomSyllable() {
   return String.fromCharCode(588 * initial + 28 * medial + final + 44032);
 }
 
+function identity(x) {
+  return x;
+}
+
 class ListeningGame {
-  constructor(gameElem) {
+  constructor(gameElem, opt_randomPhraseGenerator, opt_convertPhraseToSpoken) {
+    this.randomPhraseGenerator = opt_randomPhraseGenerator || randomSyllable;
+    this.convertPhraseToSpoken = opt_convertPhraseToSpoken || identity;
     this.numCorrect = 0;
     this.total = 0;
     this.alreadyGuessed = false;
@@ -38,7 +44,7 @@ class ListeningGame {
         .addEventListener("change", () => this.updateScore());
     }
 
-    this.correctSyllable = "";
+    this.correctPhrase = "";
     this.newListeningRound();
   }
 
@@ -46,22 +52,25 @@ class ListeningGame {
     this.alreadyGuessed = false;
     this.total++;
     this.numTotalDisplay.textContent = this.total;
-    const syllablesSet = new Set();
-    while (syllablesSet.size < this.guessLabels.length) {
-      syllablesSet.add(randomSyllable());
+    const phraseSet = new Set();
+    while (phraseSet.size < this.guessLabels.length) {
+      phraseSet.add(this.randomPhraseGenerator());
     }
-    const syllables = [...syllablesSet];
-    syllables.sort();
+    const phrases = [...phraseSet];
+    phrases.sort();
     const correctIndex = randomNonnegativeInt(this.guessLabels.length);
-    this.correctSyllable = syllables[correctIndex];
-    this.playBar.setDefaultPhrase(this.correctSyllable);
+    this.correctPhrase = phrases[correctIndex];
+    this.playBar.setDefaultPhrase(
+      this.convertPhraseToSpoken(this.correctPhrase),
+    );
     this.guessLabels.forEach((label, index) => {
       label.classList.remove("correct");
       if (correctIndex === index) {
         label.classList.add("correct");
       }
-      const syllable = syllables[index];
-      label.querySelector(".guess").textContent = syllable;
+      const phrase = phrases[index];
+      label.querySelector(".guess").textContent = phrase;
+      label.dataset["pronunciation"] = this.convertPhraseToSpoken(phrase);
       label.querySelector("input").checked = false;
     });
   }
@@ -81,13 +90,11 @@ class ListeningGame {
   }
 
   speakLabel(label) {
-    const syllable = label.querySelector(".guess").textContent;
-    if (!syllable) {
-      console.log("Missing syllable for label");
+    const pronunciation = label.dataset["pronunciation"];
+    if (!pronunciation) {
+      console.log("Missing pronunciation for label");
       return;
     }
-    this.playBar.speak(syllable);
+    this.playBar.speak(pronunciation);
   }
 }
-
-new ListeningGame(document.getElementById("listening-game"));

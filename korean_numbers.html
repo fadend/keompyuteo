@@ -2,21 +2,17 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Learn Korean with the 컴퓨터</title>
+    <title>Korean numbers</title>
     <link rel="stylesheet" href="keompyuteo.css" />
     <style>
       @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&display=swap");
     </style>
   </head>
   <body>
-    <nav>
-      <a href="index.html">Listen</a>
-      <a href="custom_phrase.html">Speak (custom phrase)</a>
-    </nav>
     <div id="listening-game">
       <h2>Listen</h2>
       <div id="play-bar"></div>
-      <p class="question">What did you hear?</p>
+      <p class="question">Which Korean number did you hear?</p>
       <ol id="listen-options-list">
         <li>
           <label class="listen-guess-label"
@@ -55,8 +51,13 @@
     </div>
     <script src="playbar.js"></script>
     <script src="keompyuteo.js"></script>
+    <script src="korean_numbers.js"></script>
     <script>
-      new ListeningGame(document.getElementById("listening-game"));
+      new ListeningGame(
+        document.getElementById("listening-game"),
+        () => 1 + randomNonnegativeInt(99),
+        intToKorean,
+      );
     </script>
   </body>
 </html>
