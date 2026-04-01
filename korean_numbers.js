@@ -45,7 +45,7 @@ function intToKorean(x, opt_ones) {
   if (x < 1 || x > 99) {
     throw new Error(`Outside [1, 99]: ${x}`);
   }
-  return TENS[parseInt(x / 10)] + ONES[x % 10];
+  return TENS[parseInt(x / 10)] + ones[x % 10];
 }
 
 function intToKoreanCounting(x) {
