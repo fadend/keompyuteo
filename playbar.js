@@ -37,6 +37,7 @@ class PlayBar {
       this.updateVoices();
     });
   }
+
   setDefaultPhrase(text) {
     this.defaultPhrase = text;
   }

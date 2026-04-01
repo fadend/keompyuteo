@@ -10,6 +10,20 @@ const ONES = [
   "여덟",
   "아홉",
 ];
+
+const COUNTING_ONES = [
+  "",
+  "한",
+  "두",
+  "세",
+  "네",
+  "다섯",
+  "여섯",
+  "일곱",
+  "여덟",
+  "아홉",
+];
+
 const TENS = [
   "",
   "열",
@@ -23,7 +37,8 @@ const TENS = [
   "아흔",
 ];
 
-function intToKorean(x) {
+function intToKorean(x, opt_ones) {
+  let ones = opt_ones || ONES;
   if (!Number.isInteger(x)) {
     throw new Error(`Expected integer, got: ${x}`);
   }
@@ -31,4 +46,8 @@ function intToKorean(x) {
     throw new Error(`Outside [1, 99]: ${x}`);
   }
   return TENS[parseInt(x / 10)] + ONES[x % 10];
+}
+
+function intToKoreanCounting(x) {
+  return intToKorean(x, COUNTING_ONES);
 }
