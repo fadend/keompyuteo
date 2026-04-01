@@ -20,7 +20,9 @@ function intToSinoKorean(x) {
   const parts = [];
   for (const [place, name] of PLACES) {
     const digit = parseInt(x / place) % 10;
-    if (digit > 0) {
+    if (digit === 1 && name) {
+      parts.push(name);
+    } else if (digit > 0) {
       parts.push(DIGITS[digit] + name);
     }
   }

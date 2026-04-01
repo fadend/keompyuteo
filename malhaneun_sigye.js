@@ -5,6 +5,9 @@ class TalkingClock {
     setInterval(() => {
       this.updateAndSpeak();
     }, 60000);
+    setInterval(() => {
+      this.update();
+    }, 1000);
     this.update();
   }
   update() {
@@ -21,6 +24,10 @@ class TalkingClock {
     const minutes = date.getMinutes();
     if (minutes !== 0) {
       koreanTime += ` ${intToSinoKorean(minutes)}분`;
+    }
+    const seconds = date.getSeconds();
+    if (seconds !== 0) {
+      koreanTime += ` ${intToSinoKorean(seconds)}초`;
     }
     const dateString = `${koreanYear}년 ${koreanMonth}월 ${koreanDay}일 ${koreanTime}`;
     this.clock.textContent = dateString;
