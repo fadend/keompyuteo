@@ -17,12 +17,12 @@ class TalkingClock {
       hour24 = 24;
     }
     const hour = ((hour24 - 1) % 12) + 1;
-    let koreanTime = `${intToKoreanCounting(hour)} 시`;
+    let koreanTime = `${intToKoreanCounting(hour)}시`;
     const minutes = date.getMinutes();
     if (minutes !== 0) {
-      koreanTime += ` ${intToSinoKorean(minutes)} 분`;
+      koreanTime += ` ${intToSinoKorean(minutes)}분`;
     }
-    const dateString = `${koreanYear} 년 ${koreanMonth} 월 ${koreanDay} 일 ${koreanTime}`;
+    const dateString = `${koreanYear}년 ${koreanMonth}월 ${koreanDay}일 ${koreanTime}`;
     this.clock.textContent = dateString;
     this.playbar.setDefaultPhrase(dateString);
   }
