@@ -59,6 +59,10 @@ export default class PlayBar {
         this.voiceSelect.appendChild(option);
       }
     }
+    // Especially on mobile, we may have only one voice.
+    // No point in giving the user a "choice" in this case,
+    // especially since horizontal space may be dear.
+    this.voiceSelect.style.display = (this.voices.length > 1) ? "" : "none";
   }
 
   getRate() {
