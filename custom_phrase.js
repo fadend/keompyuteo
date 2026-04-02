@@ -1,3 +1,5 @@
+import PlayBar from "./playbar.js";
+
 function customPhraseGame() {
   if (!window.SpeechRecognition) {
     document.getElementById("compatibility-warning").style.display = "block";

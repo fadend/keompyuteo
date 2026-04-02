@@ -1,9 +1,11 @@
+import PlayBar from "./playbar.js";
+
 // These are taken from https://en.wikipedia.org/wiki/Korean_language_and_computers#Hangul_in_Unicode.
 const INITIAL_CONSONANTS = "ᄀᄁᄂᄃᄄᄅᄆᄇᄈᄉᄊᄋᄌᄍᄎᄏᄐᄑᄒ";
 const VOWELS = "ᅡᅢᅣᅤᅥᅦᅧᅨᅩᅪᅫᅬᅭᅮᅯᅰᅱᅲᅳᅴᅵ";
 const FINAL_CONSONANTS = " ᆨᆩᆪᆫᆬᆭᆮᆯᆰᆱᆲᆳᆴᆵᆶᆷᆸᆹᆺᆻᆼᆽᆾᆿᇀᇁᇂ";
 
-function randomNonnegativeInt(max) {
+export function randomNonnegativeInt(max) {
   return parseInt(max * Math.random());
 }
 
@@ -19,7 +21,7 @@ function identity(x) {
   return x;
 }
 
-class ListeningGame {
+export default class ListeningGame {
   constructor(gameElem, opt_randomPhraseGenerator, opt_convertPhraseToSpoken) {
     this.randomPhraseGenerator = opt_randomPhraseGenerator || randomSyllable;
     this.convertPhraseToSpoken = opt_convertPhraseToSpoken || identity;
@@ -97,4 +99,8 @@ class ListeningGame {
     }
     this.playBar.speak(pronunciation);
   }
+}
+
+if (document.getElementById("listening-game")) {
+  new ListeningGame(document.getElementById("listening-game"));
 }

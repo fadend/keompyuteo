@@ -37,7 +37,7 @@ const TENS = [
   "아흔",
 ];
 
-function intToKorean(x, opt_ones) {
+export function intToKorean(x, opt_ones) {
   let ones = opt_ones || ONES;
   if (!Number.isInteger(x)) {
     throw new Error(`Expected integer, got: ${x}`);
@@ -48,6 +48,6 @@ function intToKorean(x, opt_ones) {
   return TENS[parseInt(x / 10)] + ones[x % 10];
 }
 
-function intToKoreanCounting(x) {
+export function intToKoreanCounting(x) {
   return intToKorean(x, COUNTING_ONES);
 }

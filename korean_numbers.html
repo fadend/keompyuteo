@@ -9,7 +9,7 @@
     </style>
   </head>
   <body>
-    <div id="listening-game">
+    <div id="korean-number-listening-game">
       <h2>Listen</h2>
       <div id="play-bar"></div>
       <p class="question">Which Korean number did you hear?</p>
@@ -49,15 +49,6 @@
         <span class="num-total"></span
       ></span>
     </div>
-    <script src="playbar.js"></script>
-    <script src="keompyuteo.js"></script>
-    <script src="korean_numbers.js"></script>
-    <script>
-      new ListeningGame(
-        document.getElementById("listening-game"),
-        () => 1 + randomNonnegativeInt(99),
-        intToKorean,
-      );
-    </script>
+    <script type="module" src="korean_numbers_game.js"></script>
   </body>
 </html>

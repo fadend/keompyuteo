@@ -8,7 +8,7 @@ const PLACES = [
 
 const DIGITS = ["", "일", "이", "삼", "사", "오", "육", "칠", "팔", "구"];
 
-function intToSinoKorean(x) {
+export function intToSinoKorean(x) {
   if (!Number.isInteger(x)) {
     throw new Error(`Expected integer, got: ${x}`);
   }

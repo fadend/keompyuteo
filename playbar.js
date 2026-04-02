@@ -1,7 +1,7 @@
 const MIN_RATE = 0.2;
 const MAX_RATE = 1.4;
 
-class PlayBar {
+export default class PlayBar {
   constructor(parentElem) {
     this.defaultPhrase = "안녕하세요";
     parentElem.innerHTML = "";
