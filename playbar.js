@@ -46,7 +46,9 @@ export default class PlayBar {
     this.voices = [];
     this.voiceSelect.innerHTML = "";
     for (let voice of window.speechSynthesis.getVoices()) {
-      if (/^ko-/.test(voice.lang)) {
+      // In Chrome Android, the prefix is "ko_" vs "ko-"
+      // on desktop.
+      if (/^ko[-_]/.test(voice.lang)) {
         const option = document.createElement("option");
         // Select the first matching voice found.
         if (this.voices.length === 0) {
