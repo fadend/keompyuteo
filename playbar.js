@@ -16,7 +16,7 @@ export default class PlayBar {
     this.voiceSelect.classList.add("voices");
     parentElem.appendChild(this.voiceSelect);
     const speedLabel = document.createElement("label");
-    speedLabel.textContent = "Speed: ";
+    speedLabel.textContent = "Rate: ";
     speedLabel.classList.add("speech-speed-label");
     this.rateInput = document.createElement("input");
     this.rateInput.classList.add("speech-speed");

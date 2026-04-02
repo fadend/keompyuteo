@@ -37,8 +37,10 @@ label.correct:has(:checked) {
   vertical-align: middle;
 }
 .speech-speed-label {
+  font-family: Arial;
   font-size: 15pt;
   height: 1.8rem;
+  padding-inline-start: 5px;
   vertical-align: middle;
 }
 .speech-speed {
@@ -46,7 +48,7 @@ label.correct:has(:checked) {
   height: 1.8rem;
   display: inline-block;
   vertical-align: middle;
-  width: 200px;
+  width: 120px;
 }
 .voices {
   font-size: 15pt;
