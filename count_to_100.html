@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Count to 100</title>
+    <link rel="stylesheet" href="keompyuteo.css" />
+    <link rel="stylesheet" href="count_to_100.css" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&family=Noto+Serif+KR:wght@200..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <script type="module" src="keompyuteo_navbar.js"></script>
+    <keompyuteo-nav-bar></keompyuteo-nav-bar>
+    <h1>Count to 백!</h1>
+    <div id="count-to-100">
+      <button id="start-button">Start new round!</button>
+      <div id="next-num-display">
+        Next number to say: <span id="next-num">1</span>
+      </div>
+      <div id="transcript"></div>
+      <div id="num-progress-grid"></div>
+      <div id="time-elapsed"></div>
+    </div>
+    <script type="module" src="count_to_100.js"></script>
+  </body>
+</html>
