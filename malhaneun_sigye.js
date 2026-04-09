@@ -2,6 +2,24 @@ import PlayBar from "./playbar.js";
 import { intToSinoKorean } from "./sino_korean_numbers.js";
 import { intToKoreanCounting } from "./korean_numbers.js";
 
+// We put Sunday first to match Date.getDay().
+const DAY_OF_WEEK = [
+  // Sunday
+  "일",
+  // Monday
+  "월",
+  // Tuesday
+  "화",
+  // Wednesday
+  "수",
+  // Thursday
+  "목",
+  // Friday
+  "금",
+  // Saturday
+  "토",
+];
+
 class TalkingClock {
   constructor(parentElem) {
     this.clock = parentElem.querySelector("#clock");
@@ -33,9 +51,10 @@ class TalkingClock {
     if (seconds !== 0) {
       koreanTime += ` ${intToSinoKorean(seconds)}초`;
     }
-    const dateString = `${koreanYear}년 ${koreanMonth}월 ${koreanDay}일 ${koreanTime}`;
-    this.clock.textContent = dateString;
-    this.playbar.setDefaultPhrase(dateString);
+    const dayOfWeek = `${DAY_OF_WEEK[date.getDay()]}요일`;
+    const dateString = `${koreanYear}년 ${koreanMonth}월 ${koreanDay}일 (${dayOfWeek})`;
+    this.clock.innerHTML = dateString + "<br>" + koreanTime;
+    this.playbar.setDefaultPhrase(dateString + ' ' + koreanTime);
   }
   updateAndSpeak() {
     this.update();
